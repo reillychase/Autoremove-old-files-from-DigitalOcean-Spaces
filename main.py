@@ -12,11 +12,11 @@ do_client = session.client('s3',
 d = datetime.today() - timedelta(days=30)
 utc = pytz.UTC
 d = utc.localize(d)
-response = do_client.list_objects(Bucket='locklin-networks')
+response = do_client.list_objects(Bucket='123')
 for row in response["Contents"]:
     d2 = row["LastModified"]
     if d2 < d:
         print "time to delete " + str(row["Key"]) + " / " + str(row["LastModified"])
         # Delete object
-        response = do_client.delete_object(Bucket='locklin-networks', Key=row["Key"])
+        response = do_client.delete_object(Bucket='123', Key=row["Key"])
         print response
